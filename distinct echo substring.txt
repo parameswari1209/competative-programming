@@ -1,0 +1,27 @@
+class Solution:
+    def distinctEchoSubstrings(self, text: str) -> int:
+        ws=2
+        l=len(text)
+        s=set()
+        while ws <= l:
+            swc = l-ws+1
+            index=0
+            tmp=text[index:ws+index]
+            tmp2=tmp
+            while swc>0:
+                if index>0:
+                    tmp=text[index:ws+index]
+                    if tmp == tmp2:
+                        swc-=1
+                        index+=1
+                        continue
+                i=0
+                x=len(tmp)//2
+                if tmp[0:x] == tmp[x:]:
+                    s.add(tmp)
+                swc-=1
+                index+=1
+            ws+=2
+        return len(s)
+
+        
